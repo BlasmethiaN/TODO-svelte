@@ -1,49 +1,43 @@
 <script lang="ts">
-	import Counter from '$lib/Counter.svelte';
+	import { todos } from '$lib/todo.store'
+	import Todo from '$lib/todo.svelte'
+	let todoName = ''
+
+	const onSubmit = () => {
+		todos.addTodo(todoName)
+		todoName = ''
+	}
 </script>
 
 <svelte:head>
-	<title>Hello world!</title>
+	<title>Niggers</title>
 </svelte:head>
 
 <main>
-	<h1>Hello world!</h1>
-
-	<Counter />
-
-	<p>Visit <a href="https://svelte.dev">svelte.dev</a> to learn how to build Svelte apps.</p>
+	<section>
+		<form class="form" on:submit|preventDefault={onSubmit}>
+			<input
+				type="text"
+				class="inputStyle"
+				placeholder="give me the bitches"
+				bind:value={todoName}
+			/>
+		</form>
+		{#each $todos as todo}
+			<Todo {todo} />
+		{/each}
+	</section>
 </main>
 
-<style>
+<style lang="scss">
 	main {
-		text-align: center;
-		padding: 1em;
-		margin: 0 auto;
+		display: flex;
+		justify-content: center;
 	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4rem;
-		font-weight: 100;
-		line-height: 1.1;
-		margin: 4rem auto;
-		max-width: 14rem;
-	}
-
-	p {
-		max-width: 14rem;
-		margin: 2rem auto;
-		line-height: 1.35;
-	}
-
-	@media (min-width: 480px) {
-		h1 {
-			max-width: none;
-		}
-
-		p {
-			max-width: none;
-		}
+	section {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		gap: 20px;
 	}
 </style>
