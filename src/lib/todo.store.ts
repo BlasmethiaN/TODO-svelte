@@ -7,21 +7,55 @@ export type Todo = {
 	completed: boolean
 }
 
+//! this shit in react
+// const createTodoStore = () => {
+// 	const { subscribe, update } = writable<Todo[]>([])
+// 	return {
+// 		subscribe,
+// 		addTodo: (name: string) =>
+// 			update((todos) => [...todos, { name, completed: false, id: uuid() }]),
+// 		toggleCompleted: (id: string) =>
+// 			update((todos) =>
+// 				todos.map((t) => {
+// 					if (t.id == id) {
+// 						return { ...t, completed: !t.completed }
+// 					} else return t
+// 				})
+// 			)
+// 	}
+// }
+
+//* svelte clever boi
 const createTodoStore = () => {
 	const { subscribe, update } = writable<Todo[]>([])
 	return {
 		subscribe,
 		addTodo: (name: string) =>
-			update((todos) => [...todos, { name, completed: false, id: uuid() }]),
+			update((todos) => {
+				todos.push({ name, completed: false, id: uuid() })
+				return todos
+			}),
 		toggleCompleted: (id: string) =>
-			update((todos) =>
-				todos.map((t) => {
-					if (t.id == id) {
-						return { ...t, completed: !t.completed }
-					} else return t
-				})
-			)
+			update((todos) => {
+				const todo = todos.find((t) => t.id == id)
+				todo.completed = !todo.completed
+				return todos
+			})
 	}
 }
+
+//! too much 200
+// const createTodoStore = () =>
+// 	createImmutableStore([] as Todo[], ({ update }) => ({
+// 		addTodo: (name: string) =>
+// 			update((todos) => {
+// 				todos.push({ name, completed: false, id: uuid() })
+// 			}),
+// 		toggleCompleted: (id: string) =>
+// 			update((todos) => {
+// 				const todo = todos.find((t) => t.id == id)
+// 				todo.completed = !todo.completed
+// 			})
+// 	}))
 
 export const todos = createTodoStore()

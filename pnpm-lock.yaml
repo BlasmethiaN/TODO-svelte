@@ -1,4 +1,5 @@
 dependencies:
+  immer: 9.0.1
   sass: 1.32.10
   uuid: 8.3.2
 devDependencies:
@@ -862,6 +863,10 @@ packages:
       node: '>= 4'
     resolution:
       integrity: sha512-BMpfD7PpiETpBl/A6S498BaIJ6Y/ABT93ETbby2fP00v4EbvPBXWEoaR1UBPKs3iR53pJY7EtZk5KACI57i1Uw==
+  /immer/9.0.1:
+    dev: false
+    resolution:
+      integrity: sha512-7CCw1DSgr8kKYXTYOI1qMM/f5qxT5vIVMeGLDCDX8CSxsggr1Sjdoha4OhsP0AZ1UvWbyZlILHvLjaynuu02Mg==
   /import-fresh/3.3.0:
     dependencies:
       parent-module: 1.0.1
@@ -1538,6 +1543,7 @@ specifiers:
   eslint: ^7.22.0
   eslint-config-prettier: ^8.1.0
   eslint-plugin-svelte3: ^3.1.0
+  immer: ^9.0.1
   prettier: ~2.2.1
   sass: ^1.32.10
   svelte: ^3.29.0
