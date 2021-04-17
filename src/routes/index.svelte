@@ -2,15 +2,19 @@
 	import { todos } from '$lib/todo.store'
 	import Todo from '$lib/todo.svelte'
 	let todoName = ''
+	let notCompletedOnly = false
 
 	const onSubmit = () => {
+		if (todoName === '') return
 		todos.addTodo(todoName)
 		todoName = ''
 	}
+
+	$: filteredTodos = notCompletedOnly ? $todos.filter((t) => !t.completed) : $todos
 </script>
 
 <svelte:head>
-	<title>Niggers</title>
+	<title>Ni66ers</title>
 </svelte:head>
 
 <main>
@@ -23,7 +27,13 @@
 				bind:value={todoName}
 			/>
 		</form>
-		{#each $todos as todo}
+
+		<div>
+			<label for="completedOnly">Only NOT completed</label>
+			<input id="completedOnly" type="checkbox" bind:checked={notCompletedOnly} />
+		</div>
+
+		{#each filteredTodos as todo}
 			<Todo {todo} />
 		{/each}
 	</section>
@@ -34,6 +44,7 @@
 		display: flex;
 		justify-content: center;
 	}
+
 	section {
 		display: flex;
 		justify-content: center;
